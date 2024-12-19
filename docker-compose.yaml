@@ -26,6 +26,11 @@ services:
       REDIS_IO_THREADS: 4
       REDIS_IO_THREADS_DO_READS: yes
       REDIS_DISABLE_COMMANDS: FLUSHDB,FLUSHALL
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - nest-starter-redis-data:/bitnami/redis/data
     networks:
