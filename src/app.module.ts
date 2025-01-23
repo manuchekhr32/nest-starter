@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
-import { EnvVars } from './shared/enum/env';
+import { EnvVars } from './shared/enum/env.enum';
 import { CacheModule } from '@nestjs/cache-manager';
 import type { RedisClientOptions } from 'redis';
 import { redisStore } from 'cache-manager-redis-store';
@@ -27,7 +27,6 @@ import { redisStore } from 'cache-manager-redis-store';
     }),
     CacheModule.registerAsync<RedisClientOptions>({
       isGlobal: true,
-      imports: [ConfigModule],
       inject: [ConfigService],
       // eslint-disable-next-line
       // @ts-ignore
