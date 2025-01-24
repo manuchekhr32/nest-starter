@@ -1,25 +1,16 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import * as Joi from 'joi';
 import { EnvVars } from './shared/enum/env.enum';
 import { CacheModule } from '@nestjs/cache-manager';
 import type { RedisClientOptions } from 'redis';
 import { redisStore } from 'cache-manager-redis-store';
+import { configValidationSchema } from './shared/validation/schema/config-validation-schema';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      validationSchema: Joi.object({
-        [EnvVars.PORT]: Joi.number(),
-        [EnvVars.SWAGGER]: Joi.bool(),
-        [EnvVars.CORS]: Joi.string(),
-        // Redis
-        [EnvVars.REDIS_PASSWORD]: Joi.string(),
-        [EnvVars.REDIS_HOST]: Joi.string(),
-        [EnvVars.REDIS_PORT]: Joi.number(),
-        [EnvVars.REDIS_DB]: Joi.number(),
-      }),
+      validationSchema: configValidationSchema,
       validationOptions: {
         allowUnknown: true,
         abortEarly: true,
