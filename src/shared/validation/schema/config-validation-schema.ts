@@ -10,8 +10,9 @@ export const configValidationSchema = Joi.object({
   [EnvVars.REDIS_HOST]: Joi.string(),
   [EnvVars.REDIS_PORT]: Joi.number(),
   [EnvVars.REDIS_DB]: Joi.number(),
+  // Core
   [EnvVars.NODE_ENV]: Joi.string()
-    .required()
-    .valid('development', 'production')
+    .valid('development', 'production', 'test')
+    .default('development')
     .required(),
 });
