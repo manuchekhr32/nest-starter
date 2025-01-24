@@ -32,8 +32,6 @@ import { configValidationSchema } from './shared/validation/schema/config-valida
         }),
       }),
     }),
-    // Shared modules
-    DrizzleModule,
   ],
 })
 export class AppModule {}
