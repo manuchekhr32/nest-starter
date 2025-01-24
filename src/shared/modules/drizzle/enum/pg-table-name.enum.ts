@@ -1,1 +1,3 @@
-export enum PgTableName {}
+export enum PgTableName {
+  USERS = 'users',
+}

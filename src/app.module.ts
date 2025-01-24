@@ -6,6 +6,7 @@ import type { RedisClientOptions } from 'redis';
 import { redisStore } from 'cache-manager-redis-store';
 import { configValidationSchema } from './shared/validation/schema/config-validation-schema';
 import { DrizzleModule } from './shared/modules/drizzle/drizzle.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -33,7 +34,10 @@ import { DrizzleModule } from './shared/modules/drizzle/drizzle.module';
         }),
       }),
     }),
+    // Shared modules
     DrizzleModule,
+    // Modules
+    UsersModule,
   ],
 })
 export class AppModule {}
