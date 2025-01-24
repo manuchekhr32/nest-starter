@@ -13,5 +13,6 @@ export enum EnvVars {
   REDIS_HOST = 'REDIS_HOST',
   REDIS_PORT = 'REDIS_PORT',
   REDIS_DB = 'REDIS_DB',
+  // Core
   NODE_ENV = 'NODE_ENV',
 }

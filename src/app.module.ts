@@ -5,6 +5,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import type { RedisClientOptions } from 'redis';
 import { redisStore } from 'cache-manager-redis-store';
 import { configValidationSchema } from './shared/validation/schema/config-validation-schema';
+import { DrizzleModule } from './shared/modules/drizzle/drizzle.module';
 
 @Module({
   imports: [
@@ -32,7 +33,6 @@ import { configValidationSchema } from './shared/validation/schema/config-valida
         }),
       }),
     }),
-    // Shared modules
     DrizzleModule,
   ],
 })
