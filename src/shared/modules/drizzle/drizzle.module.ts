@@ -25,7 +25,7 @@ import { InjectDrizzle } from './drizzle.decorator';
           },
           schema: drizzleSchemas,
           casing: 'snake_case',
-          logger: true,
+          logger: configService.get(EnvVars.NODE_ENV) === 'development',
         });
       },
     },
