@@ -1,6 +1,7 @@
 export enum EnvVars {
   PORT = 'PORT',
   SWAGGER = 'SWAGGER',
+  // Redis
   CORS = 'CORS',
   // Postgres
   DB_USER = 'DB_USER',

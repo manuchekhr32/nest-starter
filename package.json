@@ -36,6 +36,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "drizzle-orm": "^0.38.4",
+    "helmet": "^8.0.0",
     "joi": "^17.13.3",
     "pg": "^8.13.1",
     "redis": "^4.7.0",
