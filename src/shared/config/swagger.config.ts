@@ -5,9 +5,8 @@ export class SwaggerConfig {
   private logger = new Logger('Swagger Config');
   private readonly nestApp: INestApplication;
   private config = new DocumentBuilder()
-    .setTitle('Nestjs start')
+    .setTitle('nestjs-starter')
     .setDescription('API docs')
-    .setVersion('1.0.0')
     .setVersion('1')
     .build();
 
