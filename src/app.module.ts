@@ -39,10 +39,10 @@ import { AppController } from './app.controller';
       }),
     }),
     // Shared modules
+    LocaleModule,
     DrizzleModule,
     // Modules
     UsersModule,
-    LocaleModule,
   ],
 })
 export class AppModule {}
