@@ -7,7 +7,7 @@ import drizzle from 'eslint-plugin-drizzle';
 
 export default tseslint.config(
   {
-    ignores: ['eslint.config.mjs'],
+    ignores: ['eslint.config.mjs', 'src/shared/modules/locale/generated/'],
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,

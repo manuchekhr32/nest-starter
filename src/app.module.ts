@@ -7,8 +7,12 @@ import { redisStore } from 'cache-manager-redis-store';
 import { configValidationSchema } from './shared/validation/schema/config-validation-schema';
 import { DrizzleModule } from './shared/modules/drizzle/drizzle.module';
 import { UsersModule } from './modules/users/users.module';
+import { LocaleModule } from './shared/modules/locale/locale.module';
+import { AppController } from './app.controller';
 
 @Module({
+  // TODO: Remove AppController
+  controllers: [AppController],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
@@ -38,6 +42,7 @@ import { UsersModule } from './modules/users/users.module';
     DrizzleModule,
     // Modules
     UsersModule,
+    LocaleModule,
   ],
 })
 export class AppModule {}
