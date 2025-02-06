@@ -2,11 +2,10 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EnvVars } from './shared/enum/env.enum';
 import { CacheModule } from '@nestjs/cache-manager';
-import type { RedisClientOptions } from 'redis';
-import { redisStore } from 'cache-manager-redis-store';
 import { configValidationSchema } from './shared/validation/schema/config-validation-schema';
 import { LocaleModule } from './shared/modules/locale/locale.module';
 import { AppController } from './app.controller';
+import { createKeyv } from '@keyv/redis';
 
 @Module({
   // TODO: Remove AppController
@@ -20,20 +19,20 @@ import { AppController } from './app.controller';
         abortEarly: true,
       },
     }),
-    CacheModule.registerAsync<RedisClientOptions>({
+    CacheModule.registerAsync({
       isGlobal: true,
       inject: [ConfigService],
-      // eslint-disable-next-line
-      // @ts-ignore
-      useFactory: async (configService: ConfigService) => ({
-        store: await redisStore({
-          socket: {
-            host: configService.getOrThrow(EnvVars.REDIS_HOST),
-            port: +configService.getOrThrow(EnvVars.REDIS_PORT),
-          },
-          password: configService.getOrThrow(EnvVars.REDIS_PASSWORD),
-          database: parseInt(configService.getOrThrow(EnvVars.REDIS_DB)),
-        }),
+      useFactory: (configService: ConfigService) => ({
+        stores: [
+          createKeyv({
+            socket: {
+              host: configService.getOrThrow(EnvVars.REDIS_HOST),
+              port: +configService.getOrThrow(EnvVars.REDIS_PORT),
+            },
+            password: configService.getOrThrow(EnvVars.REDIS_PASSWORD),
+            database: parseInt(configService.getOrThrow(EnvVars.REDIS_DB)),
+          }),
+        ],
       }),
     }),
     LocaleModule,
