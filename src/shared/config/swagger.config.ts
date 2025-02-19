@@ -17,7 +17,11 @@ export class SwaggerConfig {
   public enable(bool: boolean) {
     if (!bool) return false;
     const document = SwaggerModule.createDocument(this.nestApp, this.config);
-    SwaggerModule.setup('swagger', this.nestApp, document);
+    SwaggerModule.setup('swagger', this.nestApp, document, {
+      swaggerOptions: {
+        persistAuthorization: true,
+      },
+    });
     this.logger.log('Swagger documentation path: /swagger');
     return true;
   }
